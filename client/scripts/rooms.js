@@ -9,10 +9,15 @@ var Rooms = {
 
   // TODO: Define methods which allow you to add rooms, update the list,
   // mark a room as selected, etc.
-  addRoom: function () {},
+  addRoom: function (roomname) {
+    if (!Rooms._data[roomname]) {
+      Rooms._data[roomname] = roomname;
+    }
+  },
   updateList: function () {
-    //Send get request to API endpoint
-    //with data we recieve as a result, iterate through
+    for (let i = 0; i < Messages._data.length; i++) {
+      Rooms.addRoom(Messages._data[i].roomname);
+    }
   },
   selectRoom: function () {},
   selected: 'fab'
