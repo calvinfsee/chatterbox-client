@@ -10,16 +10,16 @@ var Messages = {
   // TODO: Define methods which allow you to retrieve from,
   // add to, and generally interact with the messages.
   all: function () {
-    (function() {
-      Parse.readAll(function(data) {
-        Messages._data = data;
-      });
-    })();
     return Messages._data;
   },
   add: function (message) {
-    Parse.create(message);
+    Parse.create(message, function () {
+      App.fetch();
+    });
     return message;
+  },
+  build: function(username, text, roomname) {
+    return {username, text, roomname};
   }
 
 };

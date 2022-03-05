@@ -15,10 +15,14 @@ var MessagesView = {
   render: function() {
     // TODO: Render _all_ the messages.
     console.log('render the magic');
-    Messages.all().forEach(function (message) {
-      MessagesView.renderMessage(message);
-    });
-
+    if (typeof Rooms.selected === 'string') {
+      MessagesView.$chats.html('');
+      Messages.all().forEach(function (message) {
+        if (message.roomname === Rooms.selected) {
+          MessagesView.renderMessage(message);
+        }
+      });
+    }
   },
 
   renderMessage: function(message) {
