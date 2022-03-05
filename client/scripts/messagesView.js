@@ -27,7 +27,8 @@ var MessagesView = {
 
   renderMessage: function(message) {
     // TODO: Render a single message.
-    $(`<div class='message'><span class="username">${message.username}</span><span class='text'>:${message.text}</span></div>`).appendTo($('#chats')); //colon in text field
+    let isFriend = Friends.status(message.username) ? 'friend' : '';
+    $(`<div class='message'><span class="username ${isFriend}" >${message.username}</span><span class='text'>:${message.text}</span></div>`).appendTo($('#chats'));
   },
 
   handleClick: function(event) {

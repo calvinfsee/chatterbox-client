@@ -16,6 +16,7 @@ var Friends = {
     } else {
       delete Friends._data[friendName];
     }
+    App.fetch();
   },
 
   status: function(friendName) {
