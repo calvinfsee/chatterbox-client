@@ -9,6 +9,7 @@ var MessagesView = {
     // TODO: Perform any work which needs to be done
     // when this view loads.
     MessagesView.render();
+    MessagesView.handleClick();
   },
 
   render: function() {
@@ -17,16 +18,18 @@ var MessagesView = {
     Messages.all().forEach(function (message) {
       MessagesView.renderMessage(message);
     });
+
   },
 
   renderMessage: function(message) {
     // TODO: Render a single message.
-    $(`<div class='message'><span>${message.username}:</span><span class='text'>${message.text}</span></div>`).appendTo($('#chats'));
+    $(`<div class='message'><span class="username">${message.username}</span><span class='text'>:${message.text}</span></div>`).appendTo($('#chats')); //colon in text field
   },
 
   handleClick: function(event) {
-    // TODO: handle a user clicking on a message
-    // (this should add the sender to the user's friend list).
+    $('#chats').on('click', '.username', (e) => {
+      Friends.toggleStatus($(e.target).text());
+    });
   }
 
 };
